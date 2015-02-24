@@ -32,7 +32,7 @@ I'd like to progress this towards a few things:
 
 This uses a later version of SASS then what was original used (it has a map). Be a good dev and update your tools once in a while.
 
-
+The fact that everything is 12 columns also removes the ability to use 8ths. If it is deemed important enough it can be catered for, but is not currently.
 
 
 
