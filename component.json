@@ -1,0 +1,10 @@
+{
+  "name": "v2-responsive-grid",
+  "version": "0.0.1",
+  "development": {
+    "nib-styles/spacing-classes": "c5bbd8fb79de3e5c86a260cb11692289e06343fb"
+  },
+  "styles": [
+    "index.css"
+  ]
+}

@@ -1,0 +1,93 @@
+$rg-width: 960px;
+$rg-font-size: 16px;
+$rg-spacing: 0 5px 10px 20px 40px 60px;
+$rg-widths: ( 
+  Xs: 1em,
+  Sm: 30em,
+  Md: 40em,
+  Lg: 60em
+);
+
+// Components
+// -----------------------------------------------------------------
+
+@import "components/nib-styles/spacing-classes/c5bbd8fb79de3e5c86a260cb11692289e06343fb/index";
+
+// Grid Framework
+// -----------------------------------------------------------------
+
+@import "./lib/base";
+
+// Mixins
+// -----------------------------------------------------------------
+
+@mixin rg-VisibilityClasses($width) {
+  .rg-invisibleAt#{$width},
+  .rg-hiddenAt#{$width} {
+    display: none !important;
+  }
+  .rg-visibleAt#{$width},
+  .rg-blockAt#{$width} {
+    display: block !important;
+  }
+  .rg-inlineBlockAt#{$width} {
+    display: inline-block !important;
+  }
+  .rg-inlineAt#{$width} {
+    display: inline !important;
+  }
+  .rg-textCenterAt#{$width} {
+    text-align: center;
+  }
+  .rg-textLeftAt#{$width} {
+    text-align: left;
+  }
+  .rg-textRightAt#{$width} {
+    text-align: right;
+  }
+  .rg-autoAt#{$width} {
+    width: auto;
+  }
+}
+
+@mixin rg-Widths($width) {
+  @for $i from 1 through 12 {
+    .rg-#{$i}At#{$width} {
+      width: percentage($i / 12);
+    }
+  }
+}
+
+@mixin rg-Utils($size) {
+  html:before {
+    content: "#{$size}";
+  }
+  .rg-centerAt#{$size} {
+    margin-left: auto;
+    margin-right: auto;
+  }
+}
+
+@mixin rg-Classes($width) {
+  @include rg-VisibilityClasses($width);
+  @include rg-Widths($width);
+  @include rg-Utils($width);
+  @include Spacing($rg-spacing, $prefix: 'rg-', $suffix: "at#{$width}");
+}
+
+// Breakpoints
+// -----------------------------------------------------------------
+
+@each $width, $size in $rg-widths {
+  @media (min-width: #{$size}) {
+    @include rg-Classes($width);
+  }
+  // Fallback
+  // -----------------------------------------------------------------
+  .no-mediaqueries,
+  .no-js {
+    @include rg-Classes($width);
+  }
+}
+
+
